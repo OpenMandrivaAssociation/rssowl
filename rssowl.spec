@@ -3,7 +3,7 @@
 Name:           rssowl
 Summary:        RSS, RDF and Atom Newsreader
 Version:        1.2.3
-Release:        %mkrel 3
+Release:        %mkrel 4
 Epoch:          0
 License:        CPL
 Group:          Development/Java
@@ -21,7 +21,7 @@ Requires:       java >= 0:1.4.2
 Requires:       xerces-j2
 BuildRequires:  java-devel >= 0:1.4.2
 BuildRequires:  ImageMagick
-BuildRequires:  ant, itext, jdom, jakarta-commons-codec, jakarta-commons-httpclient, eclipse-platform >= 0:3.2.0
+BuildRequires:  ant, itext, jdom, jakarta-commons-codec, jakarta-commons-httpclient, eclipse-platform >= 1:3.3.0
 BuildRequires:  libgconf-java
 BuildRequires:  ant, jpackage-utils >= 0:1.5
 BuildRequires:  xerces-j2
@@ -32,9 +32,9 @@ Requires(postun): java-gcj-compat
 %else
 BuildArch:       noarch
 %endif
-Requires: 	itext, jdom, jakarta-commons-codec, jakarta-commons-httpclient, eclipse-platform >= 0:3.2.0
-Requires:  	libgconf-java
-Requires:	mozilla-firefox
+Requires:         itext, jdom, jakarta-commons-codec, jakarta-commons-httpclient, eclipse-platform >= 1:3.3.0
+Requires:         libgconf-java
+Requires:         mozilla-firefox
 BuildRequires:    desktop-file-utils
 Requires(post):   desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -63,7 +63,7 @@ rm doc/mpl-v11.txt
 %build
 export CLASSPATH=
 export OPT_JAR_LIST=
-build-jar-repository -p lib swt-gtk-3.2 jdom itext jakarta-commons-codec jakarta-commons-httpclient glib0.4 gconf2.12 gtk2.10 xerces-j2
+build-jar-repository -p lib swt-gtk-3.3 jdom itext jakarta-commons-codec jakarta-commons-httpclient glib0.4 gconf2.12 gtk2.10 xerces-j2
 ln -s %{_javadir}/itext.jar lib/iTextAsian.jar
 ln -s /usr/share/eclipse/plugins/org.eclipse.jface_3*.jar lib
 cd src
@@ -91,10 +91,10 @@ install -m 644 img/24x24.png $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/24x24/apps
 install -m 644 img/32x32.png $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/32x32/apps/rssowl.png
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-%{_bindir}/desktop-file-install --vendor ""	 	\
-	--dir ${RPM_BUILD_ROOT}%{_datadir}/applications	\
-	--add-category X-Mandriva-Internet-News		\
-	%{SOURCE2}
+%{_bindir}/desktop-file-install --vendor ""                 \
+        --dir ${RPM_BUILD_ROOT}%{_datadir}/applications        \
+        --add-category X-Mandriva-Internet-News                \
+        %{SOURCE2}
 
 mkdir -p $RPM_BUILD_ROOT/%{_bindir}
 cp %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/%{name}
@@ -147,5 +147,3 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/gcj/%{name}
 %attr(-,root,root) %{_libdir}/gcj/%{name}/*
 %endif
-
-
