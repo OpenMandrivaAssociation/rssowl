@@ -3,7 +3,7 @@
 Name:           rssowl
 Summary:        RSS, RDF and Atom Newsreader
 Version:        1.2.3
-Release:        %mkrel 4
+Release:        %mkrel 5
 Epoch:          0
 License:        CPL
 Group:          Development/Java
@@ -27,8 +27,6 @@ BuildRequires:  ant, jpackage-utils >= 0:1.5
 BuildRequires:  xerces-j2
 %if %{gcj_support}
 BuildRequires:    java-gcj-compat-devel
-Requires(post):   java-gcj-compat
-Requires(postun): java-gcj-compat
 %else
 BuildArch:       noarch
 %endif
