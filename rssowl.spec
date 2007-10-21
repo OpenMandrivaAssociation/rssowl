@@ -3,7 +3,7 @@
 Name:           rssowl
 Summary:        RSS, RDF and Atom Newsreader
 Version:        1.2.3
-Release:        %mkrel 5
+Release:        %mkrel 6
 Epoch:          0
 License:        CPL
 Group:          Development/Java
@@ -32,7 +32,7 @@ BuildArch:       noarch
 %endif
 Requires:         itext, jdom, jakarta-commons-codec, jakarta-commons-httpclient, eclipse-platform >= 1:3.3.0
 Requires:         libgconf-java
-Requires:         mozilla-firefox
+Requires:         firefox-devel
 BuildRequires:    desktop-file-utils
 Requires(post):   desktop-file-utils
 Requires(postun): desktop-file-utils
