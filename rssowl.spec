@@ -3,7 +3,7 @@
 Name:           rssowl
 Summary:        RSS, RDF and Atom Newsreader
 Version:        1.2.3
-Release:        %mkrel 6
+Release:        %mkrel 7
 Epoch:          0
 License:        CPL
 Group:          Development/Java
@@ -57,15 +57,16 @@ integrierte Browser.
 %patch5 -p0
 # This package doesn't contain any MPL licensed code.
 rm doc/mpl-v11.txt
+%{__perl} -pi -e 's/<javac/<javac debug="true"/g' src/build.xml
 
 %build
 export CLASSPATH=
-export OPT_JAR_LIST=
+export OPT_JAR_LIST=:
 build-jar-repository -p lib swt-gtk-3.3 jdom itext jakarta-commons-codec jakarta-commons-httpclient glib0.4 gconf2.12 gtk2.10 xerces-j2
 ln -s %{_javadir}/itext.jar lib/iTextAsian.jar
 ln -s /usr/share/eclipse/plugins/org.eclipse.jface_3*.jar lib
 cd src
-%ant deploy_linux
+%{ant} deploy_linux
 
 %install
 rm -rf $RPM_BUILD_ROOT
