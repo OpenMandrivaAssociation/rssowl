@@ -62,7 +62,7 @@ rm doc/mpl-v11.txt
 %build
 export CLASSPATH=
 export OPT_JAR_LIST=:
-build-jar-repository -p lib swt-gtk-3.3 jdom itext jakarta-commons-codec jakarta-commons-httpclient glib0.4 gconf2.12 gtk2.10 xerces-j2
+build-jar-repository -p lib swt-gtk jdom itext jakarta-commons-codec jakarta-commons-httpclient glib0.4 gconf2.12 gtk2.10 xerces-j2
 ln -s %{_javadir}/itext.jar lib/iTextAsian.jar
 ln -s /usr/share/eclipse/plugins/org.eclipse.jface_3*.jar lib
 cd src
