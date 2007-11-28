@@ -2,13 +2,13 @@
 
 Name:           rssowl
 Summary:        RSS, RDF and Atom Newsreader
-Version:        1.2.3
-Release:        %mkrel 9
+Version:        1.2.4
+Release:        %mkrel 1
 Epoch:          0
 License:        CPL
 Group:          Development/Java
 URL:            http://www.rssowl.org/
-Source0:        rssowl_1_2_3_src-CLEAN.tar.bz2
+Source0:        rssowl_1_2_4_src.tar.gz
 Source1:        %{name}.script
 Source2:        %{name}.desktop
 Patch0:         %{name}-use-jce.patch
@@ -50,7 +50,8 @@ PDF/RTF/HTML, Import/Export mit OPML, Volltextsuche und der
 integrierte Browser.
 
 %prep
-%setup -q -n rssowl_1_2_3_src
+%setup -q -n rssowl_1_2_4_src
+%remove_java_binaries
 %patch0 -p0
 %patch1 -p0
 %patch3 -p0
