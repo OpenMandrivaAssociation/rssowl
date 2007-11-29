@@ -6,7 +6,7 @@ Version:        1.2.4
 Release:        %mkrel 1
 Epoch:          0
 License:        CPL
-Group:          Development/Java
+Group:          Networking/News
 URL:            http://www.rssowl.org/
 Source0:        rssowl_1_2_4_src.tar.gz
 Source1:        %{name}.script
