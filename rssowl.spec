@@ -3,7 +3,7 @@
 Name:           rssowl
 Summary:        RSS, RDF and Atom Newsreader
 Version:        1.2.4
-Release:        %mkrel 1
+Release:        %mkrel 2
 Epoch:          0
 License:        CPL
 Group:          Networking/News
