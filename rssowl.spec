@@ -15,6 +15,7 @@ Patch0:         %{name}-use-jce.patch
 Patch1:         %{name}-build0.patch
 Patch3:         %{name}-build1.patch
 Patch5:         %{name}-browser.patch
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires:       java >= 0:1.4.2
 Requires:       xerces-j2
