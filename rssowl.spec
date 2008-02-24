@@ -3,7 +3,7 @@
 Name:           rssowl
 Summary:        RSS, RDF and Atom Newsreader
 Version:        1.2.4
-Release:        %mkrel 3
+Release:        %mkrel 3.0.1
 Epoch:          0
 License:        CPL
 Group:          Networking/News
@@ -11,7 +11,7 @@ URL:            http://www.rssowl.org/
 Source0:        rssowl_1_2_4_src.tar.gz
 Source1:        %{name}.script
 Source2:        %{name}.desktop
-Patch0:         %{name}-use-jce.patch
+#Patch0:         %{name}-use-jce.patch
 Patch1:         %{name}-build0.patch
 Patch3:         %{name}-build1.patch
 Patch5:         %{name}-browser.patch
@@ -25,12 +25,14 @@ BuildRequires:  ant, itext, jdom, jakarta-commons-codec, jakarta-commons-httpcli
 BuildRequires:  libgconf-java
 BuildRequires:  ant, java-rpmbuild >= 0:1.5
 BuildRequires:  xerces-j2
+BuildRequires:  blowfish-j
 %if %{gcj_support}
 BuildRequires:    java-gcj-compat-devel
 %else
 BuildArch:       noarch
 %endif
 Requires:         itext, jdom, jakarta-commons-codec, jakarta-commons-httpclient, eclipse-platform >= 1:3.3.0
+Requires:         blowfish-j
 Requires:         libgconf-java
 Requires:         firefox-devel
 BuildRequires:    desktop-file-utils
@@ -52,7 +54,7 @@ integrierte Browser.
 %prep
 %setup -q -n rssowl_1_2_4_src
 %remove_java_binaries
-%patch0 -p0
+#%patch0 -p0
 %patch1 -p0
 %patch3 -p0
 %patch5 -p0
@@ -63,9 +65,11 @@ rm doc/mpl-v11.txt
 %build
 export CLASSPATH=
 export OPT_JAR_LIST=:
-build-jar-repository -p lib swt-gtk jdom itext jakarta-commons-codec jakarta-commons-httpclient glib0.4 gconf2.12 gtk2.10 xerces-j2
+build-jar-repository -p lib swt-gtk jdom itext jakarta-commons-codec jakarta-commons-httpclient glib0.4 gconf2.12 gtk2.10 xerces-j2 blowfish-j
 ln -s %{_javadir}/itext.jar lib/iTextAsian.jar
+ln -s %{_javadir}/blowfish-j.jar lib/BlowfishJ.jar
 ln -s /usr/share/eclipse/plugins/org.eclipse.jface_3*.jar lib
+ln -s /usr/share/eclipse/plugins/org.eclipse.core.commands_3*.jar lib
 cd src
 %{ant} deploy_linux
 
@@ -111,9 +115,7 @@ chmod 755 $RPM_BUILD_ROOT/%{_bindir}/%{name}
 %{__perl} -pi -e 's/\r$//g' doc/tutorial/en/styles/*
 %{__perl} -pi -e 's/\r$//g' doc/*.{xml,html,txt,template}
 
-%if %{gcj_support}
-%{_bindir}/aot-compile-rpm
-%endif
+%{gcj_compile}
 
 %post 
 %if %{gcj_support}
@@ -143,7 +145,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/icons/hicolor/24x24/apps/%%{name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%%{name}.png
 %attr(0755,root,root) %{_bindir}/%{name}
-%if %{gcj_support}
-%dir %{_libdir}/gcj/%{name}
-%attr(-,root,root) %{_libdir}/gcj/%{name}/*
-%endif
+%{gcj_files}
