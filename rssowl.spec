@@ -20,7 +20,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires:       java >= 0:1.4.2
 Requires:       xerces-j2
 BuildRequires:  java-devel >= 0:1.4.2
-BuildRequires:  ImageMagick
+BuildRequires:  imagemagick
 BuildRequires:  ant, itext, jdom, jakarta-commons-codec, jakarta-commons-httpclient, eclipse-platform >= 1:3.3.0
 BuildRequires:  libgconf-java
 BuildRequires:  ant, java-rpmbuild >= 0:1.5
