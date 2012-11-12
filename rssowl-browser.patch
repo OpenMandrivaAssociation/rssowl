@@ -1,0 +1,57 @@
+--- src/java/net/sourceforge/rssowl/util/shop/BrowserShop.java.orig	2006-04-23 05:30:40.000000000 -0700
++++ src/java/net/sourceforge/rssowl/util/shop/BrowserShop.java	2006-05-06 09:54:29.000000000 -0700
+@@ -36,6 +36,9 @@
+ import org.eclipse.swt.SWTError;
+ import org.eclipse.swt.program.Program;
+ 
++import org.gnu.gconf.ConfClient;
++import org.gnu.gconf.ConfException;
++
+ import java.io.IOException;
+ 
+ /**
+@@ -268,14 +271,31 @@
+     /** Try Netscape as default browser */
+     if (webBrowser == null) {
+       try {
+-        webBrowser = "netscape";
+-        p = Runtime.getRuntime().exec(webBrowser + "  " + href);
+-      } catch (IOException e) {
+-        webBrowser = "mozilla";
++	// This is kind of lame, but - oh well - it's slightly better than
++	// the original.
++	ConfClient client = ConfClient.getInstance();
++	webBrowser = client.getString ("/desktop/gnome/url-handlers/http/command");
++	if (webBrowser.startsWith("firefox"))
++	  webBrowser = "firefox";
++	else if (webBrowser.startsWith("mozilla"))
++	  webBrowser = "mozilla";
++	else if (webBrowser.startsWith("epiphany"))
++	  webBrowser = "epiphany";
++	if (webBrowser.startsWith("netscape"))
++ 	  webBrowser = "netscape";
++ 	else
++ 	  webBrowser = "firefox";
++      } catch (ConfException ce) {
++ 	try {
++ 	  webBrowser = "firefox";
++ 	  p = Runtime.getRuntime().exec(webBrowser + "  " + href);
++ 	} catch (IOException e) {
++ 	  p = null;
++ 	  webBrowser = "mozilla";
++ 	}
+       }
+     }
+ 
+-    /** Try Mozilla as default browser */
+     if (p == null) {
+       try {
+         p = Runtime.getRuntime().exec(webBrowser + " " + href);
+@@ -284,6 +304,7 @@
+         errorMessage();
+       }
+     }
++
+     return p;
+   }
+ 

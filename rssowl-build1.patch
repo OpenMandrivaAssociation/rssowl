@@ -1,0 +1,20 @@
+--- src/build.xml.orig	2006-11-26 09:22:39.000000000 -0500
++++ src/build.xml	2006-11-29 11:27:18.000000000 -0500
+@@ -184,17 +189,6 @@
+ 		Pack compiled RSSOwl into executable JAR file.
+     -->
+ 	<target name="jar_linux" depends="compile_linux">
+-		<unjar src="${SWT}" dest="${classes}" />
+-		<unjar src="${SWT-NL}" dest="${classes}" />
+-		<unjar src="${JDOM}" dest="${classes}" />
+-		<unjar src="${JFACE}" dest="${classes}" />
+-		<unjar src="${XERCES}" dest="${classes}" />
+-		<unjar src="${ITEXT}" dest="${classes}" />
+-		<unjar src="${ITEXTASIAN}" dest="${classes}" />
+-		<unjar src="${CODEC}" dest="${classes}" />
+-		<unjar src="${HTTPCLIENT}" dest="${classes}" />
+-		<unjar src="${LOGGING}" dest="${classes}" />
+-		<unjar src="${BLOWFISH}" dest="${classes}" />
+ 		<delete file="${classes}/META-INF/LICENSE.txt" />
+ 		<delete file="${classes}/META-INF/info.xml" />
+ 		<jar jarfile="${deploy}/rssowl.jar" basedir="${classes}">

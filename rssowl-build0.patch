@@ -1,0 +1,16 @@
+--- src/build.xml.orig	2006-04-23 05:30:41.000000000 -0700
++++ src/build.xml	2006-05-06 09:34:24.000000000 -0700
+@@ -121,7 +121,12 @@
+ 		for the special-chars of the translations.
+     -->
+ 	<target name="compile_linux" depends="init">
+-		<javac excludes="**/DevShop.java" encoding="utf8" destdir="${classes}/" srcdir="${src}" classpath="${libs}" />
++          <path id="libs.classpath">
++            <fileset dir="${root}/lib" includes="**/*.jar" />
++          </path>
++	  <javac excludes="**/DevShop.java" encoding="utf8" destdir="${classes}/" srcdir="${src}">
++            <classpath refid="libs.classpath" />
++          </javac>
+ 	</target>
+ 
+ 	<!-- 
