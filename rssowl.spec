@@ -7,7 +7,7 @@ Release:        %mkrel 3.0.2
 Epoch:          0
 License:        CPL
 Group:          Networking/News
-URL:            http://www.rssowl.org/
+URL:            https://www.rssowl.org/
 Source0:        rssowl_1_2_4_src.tar.gz
 Source1:        %{name}.script
 Source2:        %{name}.desktop
